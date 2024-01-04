@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        .rectangle {
+            width: 185px;
+            height: 120px;
+            margin: 0px;
+            display: inline-grid;
+            margin-right: -4px;
+            margin-bottom: 1px;
+            border-bottom: 1px solid yellow;
+            border-right: 1px solid yellow;
+            text-align: center;
+            align-items: center;
+        }
+        .rectangle span {
+            color: white;
+            font-size: 45px;
+            font-weight: bold;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .red {
+            background-color: red;
+        }
+        .green {
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+  <input type="number" id="broj">
+    <button onclick="kreiraj()">generiraj</button>
+    <div class="wrapper"></div>
+    <script>
+var wrapper = document.querySelector(".wrapper");
+var number = 1;
+
+function isPrime(number) {
+  if (number <= 1) {
+    return false;
+  }
+  for (let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function kreiraj() {
+  var num = parseInt(document.getElementById("broj").value);
+
+  var endNumber = number + num;
+
+  while (number < endNumber) {
+    var rectangle = document.createElement("div");
+
+    if (number === 2) {
+      rectangle.className = "rectangle green";
+    } else if (number % 2 === 0) {
+      rectangle.className = "rectangle red";
+    } else if (isPrime(number)) {
+      rectangle.className = "rectangle green";
+    } else {
+      rectangle.className = "rectangle blue";
+    }
+
+    var span = document.createElement("span");
+    span.textContent = number;
+    rectangle.appendChild(span);
+    wrapper.appendChild(rectangle);
+
+    number++;
+  }
+}
+    </script>
+</body>
+</html>
